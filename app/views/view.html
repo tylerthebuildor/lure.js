@@ -1,0 +1,58 @@
+<div class="template">
+
+	<header>
+
+		<h3><img src="images/logo.png" x-link="/" />View</h3>
+		<em>The view begins its life as 
+			a template, is merged with the model, 
+			and finally rendered into the browser DOM.</em>	
+
+	</header>
+
+	<section class="MVC">
+
+		<article>
+
+<h2>lure.js</h2>
+<pre x-highlight><code class="javascript">	
+function lure(viewContainer) {
+
+	// Store Model
+	var model = scope;
+
+	// Prepare Template
+	var template = Handlebars.compile(html);
+
+	// Create View from Model & Template
+	var view = template(model);
+
+	...
+
+</code></pre>
+
+<p>
+	The view is created when the
+	model-data (in our case the 
+	scope object) is
+	merged with a template.
+</p>
+
+<p>
+	Lure.js uses Handlebars for
+	template interpolation.
+	Handlebars is a very easy
+	framework and you can 
+	check out the API reference
+	here <a href="" x-class="hl">Handlebars API</a>.
+</p>
+
+<p>
+	Head over to the <a href="/controller" x-class="hl">Controller</a>
+	section to understand the final final letter of MVC.
+</p>
+			
+		</article>
+
+	</section>
+
+</div>
