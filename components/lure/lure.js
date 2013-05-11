@@ -20,10 +20,10 @@ function Lure(viewContainer) {
     /** Init Route **/
     var initRoute = function() {
 
-        thisRoute = window.location.pathname;
+        thisRoute = window.location.hash.split('#')[1];
         var route = routes[thisRoute];
 
-        if(route) {            
+        if(route) {
             scope = {};
             controllers[route.controller](scope);
             updateView(route.templateUrl);
@@ -106,8 +106,12 @@ function Lure(viewContainer) {
     /** Init **/
     this.init = function() {
 
+        if (!window.location.hash)
+            window.location.hash = '/';
+
         window.onpopstate = function (event) {
             initRoute();
+            console.log('pop');
         };
 
     }
