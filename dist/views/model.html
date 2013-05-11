@@ -1,0 +1,74 @@
+<div class="template">
+
+	<header>
+
+		<h3><img src="images/logo.png" x-link="/" />Model</h3>
+		<em>The model is the data which
+			is merged with the template
+			to produce the view.</em>	
+
+	</header>
+
+	<section class="MVC">
+
+		<article>
+
+<h2>lure.js</h2>
+<pre x-highlight><code class="javascript">				
+function lure(viewContainer) {
+
+	/** Globals **/
+    var controllers = {}; 
+    var routes = {};
+    var scope = {};
+    var thisRoute;
+
+    ...
+
+</code></pre>
+
+<p>
+	The controllers are the
+	functions of Lure.js they are what change
+	the model and the way they do this is
+	through the scope object. 
+</p>
+
+<p>
+	Scope is a global variable that all 
+	controllers have access to.
+	This is how data is shared throughout 
+	your app. 
+</p>
+
+<p>
+	The model is how you structure your data
+	within the global scope object, so that 
+	it will merge nicely with your templates.
+	You could say that the scope is equivelant to
+	the model.
+</p>
+
+<h2>lure.js</h2>
+<pre x-highlight><code class="javascript">
+function lure(viewContainer) {	
+
+	// Store Model
+	var model = scope;
+
+	...
+
+</code></pre>
+
+<p>
+	After the model has been set 
+	it will be merged with a
+	template to create our
+	next topic the <a href="/view">View</a>.
+</p>
+
+		</article>
+
+	</section>
+
+</div>

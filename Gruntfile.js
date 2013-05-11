@@ -256,8 +256,10 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/*',
-                        'views/'
+                        //'styles/fonts/*',
+                        'views/*',
+                        'scripts/*',
+                        'styles/*'
                     ]
                 }]
             }
@@ -309,8 +311,8 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
-        'cssmin',
-        'concat',
+        //'cssmin',
+        //'concat',
         //'uglify',
         'copy',
         'rev',
