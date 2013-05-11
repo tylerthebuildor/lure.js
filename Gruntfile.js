@@ -256,10 +256,11 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        //'styles/fonts/*',
+                        'styles/fonts/*',
                         'views/*',
-                        'scripts/*',
-                        'styles/*'
+                        'scripts/**/*',
+                        'styles/*',
+                        'components/**/*'
                     ]
                 }]
             }
@@ -274,7 +275,6 @@ module.exports = function (grunt) {
                 'compass'
             ],
             dist: [
-                'coffee',
                 'compass:dist',
                 'imagemin',
                 'svgmin',
@@ -311,7 +311,7 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
-        //'cssmin',
+        'cssmin',
         //'concat',
         //'uglify',
         'copy',
