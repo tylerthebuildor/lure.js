@@ -1,0 +1,193 @@
+@import "compass/css3";
+
+$vibrant: #7b00bd;
+$base: rgba(0,155,155,0.5);
+
+$dark: #3b3b3b;
+$light: #666;
+$lighter: #999;
+
+/* ---------------------------------------------------------------------------
+ * Resets
+ * --------------------------------------------------------------------------- */
+
+/*
+&#8220;	left-“
+&#8221;	right-”
+&#8216;	left-‘
+&#8217;	right-’
+*/
+
+* {
+	@include box-sizing(border-box); 
+}
+
+html {
+
+}
+
+body {
+	border: 0;
+	color: $dark;
+	font-family: 'PT Sans', sans-serif;
+	margin: 0;	
+	padding: 0;	
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+}
+
+a { 
+	text-decoration: none; 
+	cursor: pointer;
+	&:hover { color: $lighter; }
+	&:active { color: $dark; }
+}
+
+hr { 
+	border-top: 3px dashed $lighter; 
+}
+
+/* ---------------------------------------------------------------------------
+ * Globals
+ * --------------------------------------------------------------------------- */
+
+.template {
+
+	a {
+		background: $dark;
+		color: yellow;	
+		&:hover { color: $lighter; }
+		&:active { color: $dark; }
+		padding: 0 2px;
+	}
+
+	header {
+
+		& {
+			background-color: $base;
+			padding-bottom: 20px;
+			text-align: center;
+		}
+
+		h3 {
+			cursor: pointer;
+			font-family: 'PT Sans', sans-serif;
+			font-size: 2rem;
+		}
+
+		img {
+			height: 80px;
+			position: relative;
+			top: 25px;
+			width: 80px;
+		}
+
+	}
+
+	section {
+		margin: auto;
+		max-width: 500px;
+	}
+
+	p {
+		padding: 0 10px;
+	}
+
+}
+
+.forkme {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.hl {
+	background: #3b3b3b;
+	color: yellow;
+	cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------
+ * Home
+ * --------------------------------------------------------------------------- */
+
+ section.home {
+
+	article {
+
+		& {
+			cursor: pointer;
+			margin: 10px 0;
+			padding: 0 5px;
+			position: relative;
+		}
+
+		&:active { color: $lighter; }
+		&:nth-of-type(1) { h2:first-letter { color: $vibrant; } }
+		&:nth-of-type(2) { h2:first-letter { color: $dark; } }
+		&:nth-of-type(3) { h2:first-letter { color: $base; } }
+
+		&:first-child { border-top: 0; }
+
+		h2 { font-weight: normal; }
+
+		h2:first-letter { 
+			font-size: 3rem;
+			font-weight: bold;
+		}
+
+	}
+
+ }
+
+/* ---------------------------------------------------------------------------
+ * MVC
+ * --------------------------------------------------------------------------- */
+
+ section.MVC {
+
+	p {
+		font-size: 1.5rem;
+	}
+
+ }
+
+/* ---------------------------------------------------------------------------
+ * Footnotes
+ * --------------------------------------------------------------------------- */
+
+ section.footnotes {
+
+ 	article {}
+
+ }
+
+/* ---------------------------------------------------------------------------
+ * Footer
+ * --------------------------------------------------------------------------- */
+
+footer {
+
+	& {
+		margin: 80px 0;
+	}
+
+	nav {
+		border-top: 3px dashed $lighter;
+		display: table;
+		width: 320px;
+		margin: auto;
+	}
+
+	a {	
+		background: transparent;
+		color: $light;
+		display: table-cell;
+		font-style: italic;
+		padding: 2px;
+		text-align: center;
+	}
+
+}

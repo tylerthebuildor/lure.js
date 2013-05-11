@@ -1,0 +1,49 @@
+<div class="template">
+
+	<header>
+		<h3><img src="images/logo.png" />docs</h3>
+		<em>Lure.js usage documentation</em>		
+	</header>
+
+	<section>
+
+		<article>
+			<h3>.init</h3>
+<pre x-highlight><code class="javascript">	
+var App = new lure( $('[x-view]') );
+App.init();
+
+</code></pre>
+		</article>
+
+		<article>
+			<h3>.route</h3>
+<pre x-highlight><code class="javascript">
+App.route('/home', {
+
+	templateUrl: 'views/home.html',
+	controller: 'HomeCtrl'
+
+});
+
+</code></pre>
+		</article>	
+
+		<article>
+			<h3>.controller</h3>
+<pre x-highlight><code class="javascript">
+App.controller('link', 
+function(scope, el, value) {
+
+	$(el).on('click', function() {
+		window.location.href = value;
+	});	
+
+});
+
+</code></pre>
+		</article>
+
+	</section>
+
+</div>
