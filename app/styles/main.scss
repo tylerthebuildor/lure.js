@@ -56,10 +56,10 @@ hr {
 .template {
 
 	a {
-		background: $dark;
-		color: yellow;	
 		&:hover { color: $lighter; }
 		&:active { color: $dark; }
+		background: $dark;
+		color: yellow;		
 		padding: 0 2px;
 	}
 
@@ -87,7 +87,7 @@ hr {
 	}
 
 	section {
-		margin: auto;
+		margin: 20px auto;
 		max-width: 500px;
 	}
 
