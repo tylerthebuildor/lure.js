@@ -2,7 +2,7 @@
 
 	<header>
 
-		<h3><img src="images/logo.png" x-link="#/" />View</h3>
+		<h1><img src="images/logo.png" x-link="#/" />View</h1>
 		<em>The view begins its life as 
 			a template, is merged with the model, 
 			and finally rendered into the browser DOM.</em>	
@@ -15,18 +15,14 @@
 
 <h2>lure.js</h2>
 <pre x-highlight><code class="javascript">	
-function lure(viewContainer) {
+// Store Model
+var model = scope;
 
-	// Store Model
-	var model = scope;
+// Prepare Template
+var template = Handlebars.compile(html);
 
-	// Prepare Template
-	var template = Handlebars.compile(html);
-
-	// Create View from Model & Template
-	var view = template(model);
-
-	...
+// Create View from Model & Template
+var view = template(model);
 
 </code></pre>
 

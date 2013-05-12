@@ -1,28 +1,28 @@
 <div class="template">
 
 	<header>
-		<h3><img src="images/logo.png" x-link="#/" />docs</h3>
+		<h1><img src="images/logo.png" x-link="#/" />docs</h1>
 		<em>Lure.js usage documentation</em>		
 	</header>
 
 	<section>
 
 		<article>
-			<h3>.init</h3>
+			<h2>.init</h2>
 <pre x-highlight><code class="javascript">	
-var App = new lure( $('[x-view]') );
+var App = new lure( $("[x-view]") );
 App.init();
 
 </code></pre>
 		</article>
 
 		<article>
-			<h3>.route</h3>
+			<h2>.route</h2>
 <pre x-highlight><code class="javascript">
-App.route('/home', {
+App.route("/home", {
 
-	templateUrl: 'views/home.html',
-	controller: 'HomeCtrl'
+	templateUrl: "views/home.html",
+	controller: "HomeCtrl"
 
 });
 
@@ -30,15 +30,22 @@ App.route('/home', {
 		</article>	
 
 		<article>
-			<h3>.controller</h3>
+			<h2>.controller</h2>
 <pre x-highlight><code class="javascript">
-App.controller('link', 
-function(scope, el, value) {
+App.controller("link", function(scope, el, value) {
 
-	$(el).on('click', function() {
+	$(el).on("click", function() {
 		window.location.href = value;
 	});	
 
+});
+
+</code></pre>			
+
+<h2>.http</h2>
+<pre x-highlight><code class="javascript">
+App.http({
+	
 });
 
 </code></pre>

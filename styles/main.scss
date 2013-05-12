@@ -30,6 +30,7 @@ body {
 	border: 0;
 	color: $dark;
 	font-family: 'PT Sans', sans-serif;
+	font-size: 1.0rem;
 	margin: 0;	
 	padding: 0;	
 }
@@ -49,6 +50,15 @@ hr {
 	border-top: 3px dashed $lighter; 
 }
 
+li {
+	margin-top: 5px;
+}
+
+pre code { 
+	font-size: 0.8rem;
+	white-space: pre-wrap;
+}
+
 /* ---------------------------------------------------------------------------
  * Globals
  * --------------------------------------------------------------------------- */
@@ -58,9 +68,14 @@ hr {
 	a {
 		&:hover { color: $lighter; }
 		&:active { color: $dark; }
-		background: $dark;
+		background: $light;
 		color: yellow;		
 		padding: 0 2px;
+	}
+
+	h2 { 
+		font-weight: normal;
+		font-size: 1.5rem;
 	}
 
 	header {
@@ -71,7 +86,7 @@ hr {
 			text-align: center;
 		}
 
-		h3 {
+		h1 {
 			font-family: 'PT Sans', sans-serif;
 			font-size: 2rem;
 		}
@@ -86,7 +101,7 @@ hr {
 
 	}
 
-	section {
+	section {		
 		margin: 20px auto;
 		max-width: 500px;
 	}
@@ -131,36 +146,12 @@ hr {
 
 		&:first-child { border-top: 0; }
 
-		h2 { font-weight: normal; }
-
 		h2:first-letter { 
 			font-size: 3rem;
 			font-weight: bold;
 		}
 
 	}
-
- }
-
-/* ---------------------------------------------------------------------------
- * MVC
- * --------------------------------------------------------------------------- */
-
- section.MVC {
-
-	p {
-		font-size: 1.5rem;
-	}
-
- }
-
-/* ---------------------------------------------------------------------------
- * Footnotes
- * --------------------------------------------------------------------------- */
-
- section.footnotes {
-
- 	article {}
 
  }
 
