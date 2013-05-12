@@ -2,7 +2,7 @@
 
 	<header>
 
-		<h3><img src="images/logo.png" x-link="#/" />Controller</h3>
+		<h1><img src="images/logo.png" x-link="#/" />Controller</h1>
 		<em>It&#8217;s job is to construct 
 			the model and publish 
 			it to the view.</em>	
@@ -15,43 +15,31 @@
 
 <h2>lure.js</h2>
 <pre x-highlight><code class="javascript">	
-/** Private Namespace **/
-function lure(viewContainer) {
+/* Globals */
+var controllers = {};
 
-	/** Globals **/
-	var controllers = {};
+/* Add Controller */
+this.controller = function(name, callback) {    
 
-	/** Add Controller **/
-	this.controller = function(name, callback) {    
+  controllers[name] = callback;
+  return this;
 
-	    controllers[name] = callback;
-	    return this;
-
-	}; 
-
-	...
+}; 
 
 </code></pre>
 
 <h2>main.js</h2>
 <pre x-highlight><code class="javascript">
-/* ------------------------
- * Init
- * ------------------------ */
+/* Init */
+var App = new lure( $("[x-view]") );
+App.init();
 
- var App = new lure( $('[x-view]') );
- App.init();
+/* Controllers */
+App.controller("ModelCtrl", function(scope) {
 
-/* ------------------------
- * Controllers
- * ------------------------ */
+  console.log(scope);
 
-App.controller('ModelCtrl', 
-	function(scope) {
-
-		console.log(scope);
-
-	});
+});
 
 </code></pre>
 
@@ -73,38 +61,22 @@ App.controller('ModelCtrl',
 
 <h2>main.js</h2>
 <pre x-highlight><code class="javascript">
-/* ------------------------
- * Init
- * ------------------------ */
-
-var App = new lure( $('[x-view]') );
+/* Init */
+var App = new lure( $("[x-view]") );
 App.init();
 
-/* ------------------------
- * Routes
- * ------------------------ */
+/* Routes */
+App.route("/home", {
 
-App.route('/home', {
-
-	templateUrl: 'views/home.html',
-	controller: 'HomeCtrl'
+  templateUrl: "views/home.html",
+  controller: "HomeCtrl"
 
 });
 
-/* ------------------------
- * Controllers
- * ------------------------ */
+/* Controllers */
+App.controller("HomeCtrl", function(scope) { 
 
-App.controller('HomeCtrl', function(scope) { 
-
-	App.http({
-		url: 'https://api.github.com/users/' +
-		'tylerbuchea/gists?callback=?',
-		type: 'json',
-		success: function(data) {
-			scope.gists = data;
-		}
-	});
+  console.log(scope);
 
 });
 
@@ -112,33 +84,28 @@ App.controller('HomeCtrl', function(scope) {
 
 <h2>lure.js</h2>
 <pre x-highlight><code class="javascript">
-/** Private Namespace **/
-function lure(viewContainer) {
+/* Init Route */
+var initRoute = function() {
 
-    /** Init Route **/
-    var initRoute = function() {
+  thisRoute = window.location.pathname;
+  var route = routes[thisRoute];
 
-        thisRoute = window.location.pathname;
-        var route = routes[thisRoute];
+  if(route) {            
+    scope = {};
+    controllers[route.controller](scope);
+    updateView(route.templateUrl);
+  }
 
-        if(route) {            
-            scope = {};
-            controllers[route.controller](scope);
-            updateView(route.templateUrl);
-        }
+};  
 
-    };  
+/* Init */
+this.init = function() {
 
-    /** Init **/
-    this.init = function() {
+  window.onpopstate = function (event) {
+    initRoute();
+  };
 
-        window.onpopstate = function (event) {
-            initRoute();
-        };
-
-    }
-
-    ...
+};
 
 </code></pre>
 
@@ -151,53 +118,43 @@ function lure(viewContainer) {
 
 <h2>home.html</h2>
 <pre x-highlight><code class="html">
-&#60;article x-link="/model"&#62;...&#60;/article&#62;
-&#60;article x-link="/view"&#62;...&#60;/article&#62;
-&#60;article x-link="/controller"&#62;...&#60;/article&#62;
+&#60;article x-link="/model"&#62;&#60;/article&#62;
+&#60;article x-link="/view"&#62;&#60;/article&#62;
+&#60;article x-link="/controller"&#62;&#60;/article&#62;
 
 </code></pre>
 
 <h2>main.js</h2>
 <pre x-highlight><code class="javascript">
-/* ------------------------
- * DOM Controllers
- * ------------------------ */
+/* DOM Controllers */
+App.controller("link", function(scope, el, value) {
 
-// make any element a hyperlink
-App.controller('link', 
-	function(scope, el, value) {
+  $(el).on("click", function() {
+    window.location.href = value;
+  });	
 
-		$(el).on('click', function() {
-			window.location.href = value;
-		});	
-
-	})
+})
 
 </code></pre>
 
 <h2>lure.js</h2>
 <pre x-highlight><code class="javascript">
-/** Private Namespace **/
-function lure(viewContainer) {
+/* Run Controllers */
+var runControllers = function() {
 
-  /** Run Controllers **/
-  var runControllers = function() {
+  $.each(controllers, function(name, controller) {
 
-    $.each(controllers, function(name, controller) {
+    $("[x-"+name+"]").each(function(index, el) {
 
-      $('[x-'+name+']').each(function(index, el) {
+      var value = $(el).attr("x-"+name);
 
-        var value = $(el).attr('x-'+name);
+      controller(scope, el, value, controllers);
 
-        controller(scope, el, value, controllers);
+    });                
 
-      });                
+  });
 
-    });
-
-  };
-
-  ...
+};
 
 </code></pre>
 
@@ -208,16 +165,11 @@ function lure(viewContainer) {
 
 <h2>lure.js</h2>
 <pre x-highlight><code class="javascript">
-/** Private Namespace **/
-function lure(viewContainer) {
+// Update View Container
+$(viewContainer).html(view);
 
-	// Update View Container
-	$(viewContainer).html(view);
-
-	// Run Controllers
-	runControllers();
-
-	...
+// Run Controllers
+runControllers();
 
 </code></pre>
 			

@@ -4,23 +4,23 @@
  *  by tylerbuchea.com
  * ------------------------ */
 
-/** Private Namespace **/
+/* Private Namespace */
 function Lure(viewContainer) {
 
-	/* ---------------------------------------------------------------------------
-	 *  Private API
-	 * --------------------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------
+     *  Private API
+     * --------------------------------------------------------------------------- */
 
-    /** Globals **/    
+    /* Globals */    
     var controllers = {}; 
     var routes = {};
     var scope = {};
     var thisRoute;
 
-    /** Init Route **/
+    /* Init Route */
     var initRoute = function() {
 
-        thisRoute = window.location.hash.split('#')[1];
+        thisRoute = window.location.hash.split("#")[1];
         var route = routes[thisRoute];
 
         if(route) {
@@ -31,14 +31,14 @@ function Lure(viewContainer) {
 
     };   
 
-    /** Run Controllers **/
+    /* Run Controllers */
     var runControllers = function() {
 
         $.each(controllers, function(name, controller) {
 
-            $('[x-'+name+']').each(function(index, el) {
+            $("[x-"+name+"]").each(function(index, el) {
 
-                var value = $(el).attr('x-'+name);
+                var value = $(el).attr("x-"+name);
 
                 controller(scope, el, value, controllers);
 
@@ -48,7 +48,7 @@ function Lure(viewContainer) {
 
     };
 
-    /** Update View **/
+    /* Update View */
     var updateView = function(templateUrl) {
 
         // Get Template
@@ -73,11 +73,11 @@ function Lure(viewContainer) {
 
     };
 
-	/* ---------------------------------------------------------------------------
-	 *  Public API
-	 * --------------------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------
+     *  Public API
+     * --------------------------------------------------------------------------- */
 
-    /** Add Controller **/
+    /* Add Controller */
     this.controller = function(name, callback) {    
 
         controllers[name] = callback;
@@ -85,7 +85,7 @@ function Lure(viewContainer) {
 
     };
 
-    /** Add Route **/
+    /* Add Route */
     this.route = function(name, config) {
 
         routes[name] = config;
@@ -93,7 +93,7 @@ function Lure(viewContainer) {
 
     };
 
-    /** Http Request **/
+    /* Http Request */
     this.http = function(config) {   
 
         config.complete = function() {
@@ -103,17 +103,16 @@ function Lure(viewContainer) {
 
     };
 
-    /** Init **/
+    /* Init */
     this.init = function() {
 
         if (!window.location.hash)
-            window.location.hash = '/';
+            window.location.hash = "/";
 
         window.onpopstate = function (event) {
             initRoute();
-            console.log('pop');
         };
 
-    }
+    };
 
 }
