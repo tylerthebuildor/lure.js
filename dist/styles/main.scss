@@ -101,6 +101,9 @@ pre code {
 
 	}
 
+	em {
+	}
+
 	section {		
 		margin: 20px auto;
 		max-width: 500px;
@@ -167,18 +170,18 @@ footer {
 
 	nav {
 		border-top: 3px dashed $lighter;
-		display: table;
-		width: 320px;
+		max-width: 320px;
 		margin: auto;
+	}
+
+	dl {
+		float: left;
 	}
 
 	a {	
 		background: transparent;
 		color: $light;
-		display: table-cell;
 		font-style: italic;
-		padding: 2px;
-		text-align: center;
 	}
 
 }

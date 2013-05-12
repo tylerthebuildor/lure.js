@@ -14,7 +14,7 @@
 		<article>
 
 <h2>lure.js</h2>
-<pre x-highlight><code class="javascript">	
+<pre x-highlight class="javascript"><code>	
 /* Globals */
 var controllers = {};
 
@@ -29,7 +29,7 @@ this.controller = function(name, callback) {
 </code></pre>
 
 <h2>main.js</h2>
-<pre x-highlight><code class="javascript">
+<pre x-highlight class="javascript"><code>
 /* Init */
 var App = new lure( $("[x-view]") );
 App.init();
@@ -60,7 +60,7 @@ App.controller("ModelCtrl", function(scope) {
 </p>
 
 <h2>main.js</h2>
-<pre x-highlight><code class="javascript">
+<pre x-highlight class="javascript"><code>
 /* Init */
 var App = new lure( $("[x-view]") );
 App.init();
@@ -83,7 +83,7 @@ App.controller("HomeCtrl", function(scope) {
 </code></pre>
 
 <h2>lure.js</h2>
-<pre x-highlight><code class="javascript">
+<pre x-highlight class="javascript"><code>
 /* Init Route */
 var initRoute = function() {
 
@@ -117,7 +117,7 @@ this.init = function() {
 </p>
 
 <h2>home.html</h2>
-<pre x-highlight><code class="html">
+<pre x-highlight class="html"><code>
 &#60;article x-link="/model"&#62;&#60;/article&#62;
 &#60;article x-link="/view"&#62;&#60;/article&#62;
 &#60;article x-link="/controller"&#62;&#60;/article&#62;
@@ -125,7 +125,7 @@ this.init = function() {
 </code></pre>
 
 <h2>main.js</h2>
-<pre x-highlight><code class="javascript">
+<pre x-highlight class="javascript"><code>
 /* DOM Controllers */
 App.controller("link", function(scope, el, value) {
 
@@ -138,7 +138,7 @@ App.controller("link", function(scope, el, value) {
 </code></pre>
 
 <h2>lure.js</h2>
-<pre x-highlight><code class="javascript">
+<pre x-highlight class="javascript"><code>
 /* Run Controllers */
 var runControllers = function() {
 
@@ -164,11 +164,11 @@ var runControllers = function() {
 </p>
 
 <h2>lure.js</h2>
-<pre x-highlight><code class="javascript">
-// Update View Container
+<pre x-highlight class="javascript"><code>
+// update view-container
 $(viewContainer).html(view);
 
-// Run Controllers
+// run controllers
 runControllers();
 
 </code></pre>

@@ -51,22 +51,22 @@ function Lure(viewContainer) {
     /* Update View */
     var updateView = function(templateUrl) {
 
-        // Get Template
+        // get template
         $.get(templateUrl, function(html) {
 
-            // Store Model
+            // store model
             var model = scope; 
 
-            // Prepare Template
+            // prepare template
             var template = Handlebars.compile(html);
 
-            // Create View from Model & Template
+            // create view from model & template
             var view = template(model);
 
-            // Update View Container
+            // update view-container
             $(viewContainer).html(view);
 
-            // Run Controllers
+            // run controllers
             runControllers();
 
         });
