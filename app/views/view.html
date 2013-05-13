@@ -13,39 +13,38 @@
 
 		<article>
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>	
-// store model
-var model = scope;
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>	
+			// store model
+			var model = scope;
 
-// prepare template
-var template = Handlebars.compile(html);
+			// prepare template
+			var template = Handlebars.compile(html);
 
-// create view from model & template
-var view = template(model);
+			// create view from model & template
+			var view = template(model);
+			</code></pre>
 
-</code></pre>
+			<p>
+				The view is created when the
+				model-data (in our case the 
+				scope object) is
+				merged with a template.
+			</p>
 
-<p>
-	The view is created when the
-	model-data (in our case the 
-	scope object) is
-	merged with a template.
-</p>
+			<p>
+				Lure.js uses Handlebars for
+				template interpolation.
+				Handlebars is a very easy
+				framework and you can 
+				check out the API reference
+				here <a href="http://handlebarsjs.com" target="_blank">Handlebars API</a>.
+			</p>
 
-<p>
-	Lure.js uses Handlebars for
-	template interpolation.
-	Handlebars is a very easy
-	framework and you can 
-	check out the API reference
-	here <a href="http://handlebarsjs.com" target="_blank">Handlebars API</a>.
-</p>
-
-<p>
-	Head over to the <a href="#/controller">Controller</a>
-	section to understand the final final letter of MVC.
-</p>
+			<p>
+				Head over to the <a href="#/controller">Controller</a>
+				section to understand the final final letter of MVC.
+			</p>
 			
 		</article>
 

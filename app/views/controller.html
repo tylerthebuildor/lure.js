@@ -13,165 +13,158 @@
 
 		<article>
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>	
-/* Globals */
-var controllers = {};
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>	
+			/* Globals */
+			var controllers = {};
 
-/* Add Controller */
-this.controller = function(name, callback) {    
+			/* Add Controller */
+			this.controller = function(name, callback) {    
 
-  controllers[name] = callback;
-  return this;
+			  controllers[name] = callback;
+			  return this;
 
-}; 
+			};
+			</code></pre>
 
-</code></pre>
+			<h2>main.js</h2>
+			<pre x-highlight class="javascript"><code>
+			/* Init */
+			var App = new lure( $("[x-view]") );
+			App.init();
 
-<h2>main.js</h2>
-<pre x-highlight class="javascript"><code>
-/* Init */
-var App = new lure( $("[x-view]") );
-App.init();
+			/* Controllers */
+			App.controller("ModelCtrl", function(scope) {
 
-/* Controllers */
-App.controller("ModelCtrl", function(scope) {
+			  console.log(scope);
 
-  console.log(scope);
+			});
+			</code></pre>
 
-});
+			<p>
+				This first example shows the birth of
+				a controller: from the declaration of the 
+				controllers global object, to the add controller function, and
+				finally an example of a controller that console.log&#8217;s
+				the global scope it has access to.
+			</p>
 
-</code></pre>
+			<p>
+				In Lure.js controllers are called in two ways. In the first
+				scenario a controller is called when popstate is fired. Every
+				url route has a specific controller assigned to it that 
+				sets up the scope for the first time. Think of it as
+				the init function for your individual "pages".
+			</p>
 
-<p>
-	This first example shows the birth of
-	a controller: from the declaration of the 
-	controllers global object, to the add controller function, and
-	finally an example of a controller that console.log&#8217;s
-	the global scope it has access to.
-</p>
+			<h2>main.js</h2>
+			<pre x-highlight class="javascript"><code>
+			/* Init */
+			var App = new lure( $("[x-view]") );
+			App.init();
 
-<p>
-	In Lure.js controllers are called in two ways. In the first
-	scenario a controller is called when popstate is fired. Every
-	url route has a specific controller assigned to it that 
-	sets up the scope for the first time. Think of it as
-	the init function for your individual "pages".
-</p>
+			/* Routes */
+			App.route("/home", {
 
-<h2>main.js</h2>
-<pre x-highlight class="javascript"><code>
-/* Init */
-var App = new lure( $("[x-view]") );
-App.init();
+			  templateUrl: "views/home.html",
+			  controller: "HomeCtrl"
 
-/* Routes */
-App.route("/home", {
+			});
 
-  templateUrl: "views/home.html",
-  controller: "HomeCtrl"
+			/* Controllers */
+			App.controller("HomeCtrl", function(scope) { 
 
-});
+			  console.log(scope);
 
-/* Controllers */
-App.controller("HomeCtrl", function(scope) { 
+			});
+			</code></pre>
 
-  console.log(scope);
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>
+			/* Init Route */
+			var initRoute = function() {
 
-});
+			  thisRoute = window.location.pathname;
+			  var route = routes[thisRoute];
 
-</code></pre>
+			  if(route) {            
+			    scope = {};
+			    controllers[route.controller](scope);
+			    updateView(route.templateUrl);
+			  }
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>
-/* Init Route */
-var initRoute = function() {
+			};  
 
-  thisRoute = window.location.pathname;
-  var route = routes[thisRoute];
+			/* Init */
+			this.init = function() {
 
-  if(route) {            
-    scope = {};
-    controllers[route.controller](scope);
-    updateView(route.templateUrl);
-  }
+			  window.onpopstate = function (event) {
+			    initRoute();
+			  };
 
-};  
+			};
+			</code></pre>
 
-/* Init */
-this.init = function() {
+			<p>
+				The second group of controllers are extensions for your html.
+				They can add events, change values, assign classes, and even
+				call other controllers. You add these to your html elements as attributes
+				using the x-ControllerName="value" syntax.
+			</p>
 
-  window.onpopstate = function (event) {
-    initRoute();
-  };
+			<h2>home.html</h2>
+			<pre x-highlight class="html"><code>
+			&#60;article x-link="/model"&#62;&#60;/article&#62;
+			&#60;article x-link="/view"&#62;&#60;/article&#62;
+			&#60;article x-link="/controller"&#62;&#60;/article&#62;
 
-};
+			</code></pre>
 
-</code></pre>
+			<h2>main.js</h2>
+			<pre x-highlight class="javascript"><code>
+			/* DOM Controllers */
+			App.controller("link", function(scope, el, value) {
 
-<p>
-	The second group of controllers are extensions for your html.
-	They can add events, change values, assign classes, and even
-	call other controllers. You add these to your html elements as attributes
-	using the x-ControllerName="value" syntax.
-</p>
+			  $(el).on("click", function() {
+			    window.location.href = value;
+			  });	
 
-<h2>home.html</h2>
-<pre x-highlight class="html"><code>
-&#60;article x-link="/model"&#62;&#60;/article&#62;
-&#60;article x-link="/view"&#62;&#60;/article&#62;
-&#60;article x-link="/controller"&#62;&#60;/article&#62;
+			});
+			</code></pre>
 
-</code></pre>
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>
+			/* Run Controllers */
+			var runControllers = function() {
 
-<h2>main.js</h2>
-<pre x-highlight class="javascript"><code>
-/* DOM Controllers */
-App.controller("link", function(scope, el, value) {
+			  $.each(controllers, function(name, controller) {
 
-  $(el).on("click", function() {
-    window.location.href = value;
-  });	
+			    $("[x-"+name+"]").each(function(index, el) {
 
-})
+			      var value = $(el).attr("x-"+name);
 
-</code></pre>
+			      controller(scope, el, value, controllers);
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>
-/* Run Controllers */
-var runControllers = function() {
+			    });                
 
-  $.each(controllers, function(name, controller) {
+			  });
 
-    $("[x-"+name+"]").each(function(index, el) {
+			};
+			</code></pre>
 
-      var value = $(el).attr("x-"+name);
+			<p>
+				runControllers is called immediately after the view
+				is inserted into the viewContainer.
+			</p>
 
-      controller(scope, el, value, controllers);
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>
+			// update view-container
+			$(viewContainer).html(view);
 
-    });                
-
-  });
-
-};
-
-</code></pre>
-
-<p>
-	runControllers is called immediately after the view
-	is inserted into the viewContainer.
-</p>
-
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>
-// update view-container
-$(viewContainer).html(view);
-
-// run controllers
-runControllers();
-
-</code></pre>
+			// run controllers
+			runControllers();
+			</code></pre>
 			
 		</article>
 

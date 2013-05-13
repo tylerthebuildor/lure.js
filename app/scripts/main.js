@@ -141,7 +141,7 @@ App.controller("link", function(scope, el, value) {
 
 .controller("highlight", function(scope, el) {
 
-		hljs.highlightBlock(el);
+		hljs.highlightBlock(el, "&nbsp;");
 
 	})
 

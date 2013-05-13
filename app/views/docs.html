@@ -9,46 +9,46 @@
 
 		<article>
 			<h2>.init</h2>
-<pre x-highlight class="javascript"><code>	
-var App = new lure( $("[x-view]") );
-App.init();
-
-</code></pre>
+			<pre x-highlight class="javascript"><code>	
+			var App = new lure( $("[x-view]") );
+			App.init();
+			</code></pre>
+			
+			<p>
+				
+			</p>
 		</article>
 
 		<article>
 			<h2>.route</h2>
-<pre x-highlight class="javascript"><code>
-App.route("/home", {
+			<pre x-highlight class="javascript"><code>
+			App.route("/", {
 
-	templateUrl: "views/home.html",
-	controller: "HomeCtrl"
+				templateUrl: "views/home.html",
+				controller: "HomeCtrl"
 
-});
-
-</code></pre>
+			});
+			</code></pre>
 		</article>	
 
 		<article>
 			<h2>.controller</h2>
-<pre x-highlight class="javascript"><code>
-App.controller("link", function(scope, el, value) {
+			<pre x-highlight class="javascript"><code>
+			App.controller("link", function(scope, el, value) {
 
-	$(el).on("click", function() {
-		window.location.href = value;
-	});	
+				$(el).on("click", function() {
+					window.location.href = value;
+				});	
 
-});
+			});
+			</code></pre>			
 
-</code></pre>			
-
-<h2>.http</h2>
-<pre x-highlight class="javascript"><code>
-App.http({
-	
-});
-
-</code></pre>
+			<h2>.http</h2>
+			<pre x-highlight class="javascript"><code>
+			App.http({
+				
+			});
+			</code></pre>
 		</article>
 
 	</section>
