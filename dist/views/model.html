@@ -13,51 +13,49 @@
 
 		<article>
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>				
-/* Globals */
-var controllers = {}; 
-var routes = {};
-var scope = {};
-var thisRoute;
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>				
+			/* Globals */
+			var controllers = {}; 
+			var routes = {};
+			var scope = {};
+			var thisRoute;
+			</code></pre>
 
-</code></pre>
+			<p>
+				The controllers are the
+				functions of Lure.js they are what change
+				the model and the way they do this is
+				through the scope object. 
+			</p>
 
-<p>
-	The controllers are the
-	functions of Lure.js they are what change
-	the model and the way they do this is
-	through the scope object. 
-</p>
+			<p>
+				Scope is a global variable that all 
+				controllers have access to.
+				This is how data is shared throughout 
+				your app. 
+			</p>
 
-<p>
-	Scope is a global variable that all 
-	controllers have access to.
-	This is how data is shared throughout 
-	your app. 
-</p>
+			<p>
+				The model is how you structure your data
+				within the global scope object, so that 
+				it will merge nicely with your templates.
+				You could say that the scope is equivelant to
+				the model.
+			</p>
 
-<p>
-	The model is how you structure your data
-	within the global scope object, so that 
-	it will merge nicely with your templates.
-	You could say that the scope is equivelant to
-	the model.
-</p>
+			<h2>lure.js</h2>
+			<pre x-highlight class="javascript"><code>
+			// store model
+			var model = scope;
+			</code></pre>
 
-<h2>lure.js</h2>
-<pre x-highlight class="javascript"><code>
-// store model
-var model = scope;
-
-</code></pre>
-
-<p>
-	After the model has been set 
-	it will be merged with a
-	template to create our
-	next topic the <a href="#/view">View</a>.
-</p>
+			<p>
+				After the model has been set 
+				it will be merged with a
+				template to create our
+				next topic the <a href="#/view">View</a>.
+			</p>
 
 		</article>
 
