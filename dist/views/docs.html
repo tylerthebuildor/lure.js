@@ -9,6 +9,10 @@
 
 		<article>
 			<h2>.init</h2>
+			<p>
+				Here we create a new instance of Lure and use init which
+				binds the initial routes to the onpopstate event.
+			</p>
 			<pre x-highlight class="javascript"><code>	
 			var App = new lure( $("[x-view]") );
 			App.init();
@@ -21,11 +25,15 @@
 
 		<article>
 			<h2>.route</h2>
+			<p>
+				Wires together the current URL location, view template, and 
+				controller.
+			</p>
 			<pre x-highlight class="javascript"><code>
 			App.route("/", {
 
-				templateUrl: "views/home.html",
-				controller: "HomeCtrl"
+			    templateUrl: "template.html",
+			    controller: "TemplateCtrl"
 
 			});
 			</code></pre>
@@ -33,19 +41,42 @@
 
 		<article>
 			<h2>.controller</h2>
+			<p>
+				Breaks the code into functional pieces
+				and can be called from the dom with the 
+				x-ControllerName="value" attribute or 
+				from within a route using the controller
+				property.
+			</p>
 			<pre x-highlight class="javascript"><code>
-			App.controller("link", function(scope, el, value) {
+			App.controller("name", function(scope, el, value) {
 
-				$(el).on("click", function() {
-					window.location.href = value;
-				});	
+			    $(el).on("click", function() {
+
+			        window.location.href = value;
+
+			    });	
 
 			});
 			</code></pre>			
 
 			<h2>.http</h2>
+			<p>
+				Is just a wrapper for the JQuery
+				$.ajax call that automatically
+				updates the view after the data
+				has been returned. All the same
+				$.ajax arguments apply.
+			</p>
 			<pre x-highlight class="javascript"><code>
 			App.http({
+
+			    url: 'https://api.github.com/users/tylerbuchea/' +
+			         'gists?callback=?',
+			    dataType: 'json',
+			    success: function(data) {
+			        scope.myinfo.github = data;
+			    }
 				
 			});
 			</code></pre>
