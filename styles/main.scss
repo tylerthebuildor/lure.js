@@ -6,6 +6,7 @@ $base: rgba(0,155,155,0.5);
 $dark: #3b3b3b;
 $light: #666;
 $lighter: #999;
+$lightest: #fff;
 
 /* ---------------------------------------------------------------------------
  * Resets
@@ -129,6 +130,20 @@ pre code {
 	background: #3b3b3b;
 	color: yellow;
 	cursor: pointer;
+}
+
+h1.hero {
+
+	& {
+		text-align: center;
+	}
+
+	a {
+		background: $vibrant;
+		border-radius: 5px;
+		color: $lightest;
+		padding: 10px;
+	}
 }
 
 /* ---------------------------------------------------------------------------
