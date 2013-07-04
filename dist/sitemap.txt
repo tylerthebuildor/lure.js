@@ -1,0 +1,6 @@
+http://tylerbuchea.com/projects/lure/#/model
+http://tylerbuchea.com/projects/lure/#/view
+http://tylerbuchea.com/projects/lure/#/controller
+http://tylerbuchea.com/projects/lure/#/about
+http://tylerbuchea.com/projects/lure/#/docs
+http://tylerbuchea.com/projects/lure/#/dictionary

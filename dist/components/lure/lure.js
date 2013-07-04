@@ -29,7 +29,7 @@ function Lure(viewContainer) {
             updateView(route.templateUrl);
         }
 
-    };   
+    };
 
     /* Run Controllers */
     var runControllers = function() {
@@ -109,7 +109,7 @@ function Lure(viewContainer) {
         if (!window.location.hash)
             window.location.hash = "/";
 
-        window.onpopstate = function (event) {
+        window.onpopstate = function(event) {
             initRoute();
         };
 
