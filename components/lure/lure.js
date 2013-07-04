@@ -11,7 +11,7 @@ function Lure(viewContainer) {
      *  Private API
      * --------------------------------------------------------------------------- */
 
-    /* Globals */    
+    /* Globals */
     var controllers = {}; 
     var routes = {};
     var scope = {};
@@ -110,8 +110,11 @@ function Lure(viewContainer) {
             window.location.hash = "/";
 
         window.onpopstate = function(event) {
-            initRoute();
+            if(!history.state)
+                initRoute();
         };
+
+        initRoute();
 
     };
 
