@@ -1,9 +1,8 @@
 
-/* Init */
 "use strict";
 
+/* Create Lure Object */
 var App = new Lure( $("[x-view]") );
-App.init();
 
 /* Routes  */
 App.route("/", {
@@ -155,3 +154,6 @@ App.controller("link", function(scope, el, value) {
 		});
 
 	});
+
+/** Initialize Lure App **/
+App.init();
