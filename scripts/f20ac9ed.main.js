@@ -4,7 +4,7 @@
 /* Create Lure Object */
 var App = new Lure( $("[x-view]") );
 
-/* Routes  */
+/* Routes */
 App.route("/", {
 
 	templateUrl: "views/home.html",

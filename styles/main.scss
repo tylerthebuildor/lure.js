@@ -136,6 +136,7 @@ h1.hero {
 
 	& {
 		text-align: center;
+		margin: 30px;
 	}
 
 	a {
@@ -154,15 +155,20 @@ h1.hero {
 
 	article {
 
-		& {
-			cursor: pointer;
+		& {			
 			margin: 10px 0;
 			padding: 0 5px;
 			position: relative;
 		}
 
-		&:hover { color: $lighter; }
-		&:active { color: $dark; }
+		&[x-link] { 
+			& {
+				cursor: pointer;
+			}
+			&:hover { color: $lighter; }
+			&:active { color: $dark; } 
+		}
+
 		&:nth-of-type(1) { h2:first-letter { color: $vibrant; } }
 		&:nth-of-type(2) { h2:first-letter { color: $dark; } }
 		&:nth-of-type(3) { h2:first-letter { color: $base; } }
@@ -174,6 +180,10 @@ h1.hero {
 			font-weight: bold;
 		}
 
+	}
+
+	section:nth-of-type(2) {
+		margin-top: 50px;
 	}
 
  }
