@@ -13,39 +13,31 @@
 
 		<article>
 
-			<h2>lure.js</h2>
+			<h2>components/lure/lure.js</h2>
 			<pre x-highlight class="javascript"><code>				
 			/* Globals */
 			var controllers = {}; 
+			var model = {};
 			var routes = {};
-			var scope = {};
 			var thisRoute;
 			</code></pre>
 
 			<p>
-				The model is how you structure your data.
+				The Model is how you structure your data.
 				You will create a hierarchy in the global 
-				scope object, so that it will merge nicely 
-				with your templates.				
+				model object, so that it will merge nicely 
+				with your templates.			
 			</p>
 
 			<p>
-				Scope is a global variable that all 
+				Model is a global variable that all 
 				controllers have access to.
 				This is how data is shared throughout 
-				your app. You could say that the scope is equivalent to
-				the model.
+				your app.
 			</p>
 
-			<h2>lure.js</h2>
-			<pre x-highlight class="javascript"><code>
-			// store model
-			var model = scope;
-			</code></pre>
-
 			<p>
-				After the model has been set 
-				it will be merged with a
+				The Model will be merged with a
 				template to create our
 				next topic the <a href="#/view">View</a>.
 			</p>

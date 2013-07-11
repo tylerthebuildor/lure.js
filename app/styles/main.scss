@@ -2,11 +2,19 @@
 
 $vibrant: #7b00bd;
 $base: rgba(0,155,155,0.5);
-
+$off: yellow;
 $dark: #3b3b3b;
 $light: #666;
 $lighter: #999;
 $lightest: #fff;
+
+
+$xxlarge: 3.0rem;
+$xlarge: 2.0rem;
+$large: 1.5rem;
+$medium: 1.25rem;
+$small: 1.0 rem;
+$xsmall: 0.8rem;
 
 /* ---------------------------------------------------------------------------
  * Resets
@@ -23,28 +31,30 @@ $lightest: #fff;
 	@include box-sizing(border-box);
 }
 
-html {
-
-}
-
 body {
 	border: 0;
 	color: $dark;
 	font-family: 'PT Sans', sans-serif;
-	font-size: 1.0rem;
+	font-size: $small;
 	margin: 0;	
-	padding: 0;	
-}
-
-h1, h2, h3 {
-	margin-top: 0;
+	padding: 0;
 }
 
 a { 
-	text-decoration: none; 
-	cursor: pointer;
-	&:hover { color: $lighter; }
-	&:active { color: $dark; }
+
+	& {
+		cursor: pointer;
+		text-decoration: none; 
+	}
+
+	&:hover { 
+		color: $lighter; 
+	}
+
+	&:active { 
+		color: $dark; 
+	}
+
 }
 
 hr { 
@@ -62,27 +72,50 @@ em {
 }
 
 pre code { 
-	font-size: 0.8rem;
+	font-size: $xsmall;
 	white-space: pre-wrap;
+}
+
+h1, h2, h3 {
+	color: $dark;
+	margin-top: 0;
+}
+
+h1 { 
+	font-size: $xlarge;
+}
+
+h2 {
+	font-size: $large;
+}
+
+h3 {
+	font-size: $medium;
 }
 
 /* ---------------------------------------------------------------------------
  * Globals
  * --------------------------------------------------------------------------- */
 
+
 .template {
 
 	a {
-		&:hover { color: $lighter; }
-		&:active { color: $dark; }
-		background: $light;
-		color: yellow;		
-		padding: 0 2px;
-	}
 
-	h2 { 
-		font-weight: normal;
-		font-size: 1.5rem;
+		& {
+			background: $light;
+			color: $off;		
+			padding: 0 2px;
+		}
+
+		&:hover { 
+			color: $lighter; 
+		}
+
+		&:active { 
+			color: $dark; 
+		}
+
 	}
 
 	header {
@@ -93,20 +126,12 @@ pre code {
 			text-align: center;
 		}
 
-		h1 {
-			font-family: 'PT Sans', sans-serif;
-			font-size: 2rem;
-		}
-
 		img {
 			cursor: pointer;
 			position: relative;
 			top: 25px;
 		}
 
-	}
-
-	em {
 	}
 
 	section {		
@@ -122,12 +147,11 @@ pre code {
 
 .forkme {
 	position: absolute;
-	top: 0;
 	right: 0;
+	top: 0;
 }
 
 .hl {
-	background: #3b3b3b;
 	color: yellow;
 	cursor: pointer;
 }
@@ -161,23 +185,33 @@ h1.hero {
 			position: relative;
 		}
 
+		&:first-child { 
+			border-top: 0; 
+		}
+
 		&[x-link] { 
 			& {
 				cursor: pointer;
 			}
-			&:hover { color: $lighter; }
 			&:active { color: $dark; } 
+			&:hover { color: $lighter; }
+			&:nth-of-type(1) { h2:first-letter { color: $vibrant; } }
+			&:nth-of-type(2) { h2:first-letter { color: $dark; } }
+			&:nth-of-type(3) { h2:first-letter { color: $base; } }
 		}
 
-		&:nth-of-type(1) { h2:first-letter { color: $vibrant; } }
-		&:nth-of-type(2) { h2:first-letter { color: $dark; } }
-		&:nth-of-type(3) { h2:first-letter { color: $base; } }
 
-		&:first-child { border-top: 0; }
+		h2 {
 
-		h2:first-letter { 
-			font-size: 3rem;
-			font-weight: bold;
+			& {
+				font-weight: normal;
+			}
+
+			&:first-letter {
+				font-size: $xxlarge;
+				font-weight: bold;
+			}
+
 		}
 
 	}

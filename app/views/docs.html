@@ -14,7 +14,7 @@
 				binds the initial routes to the onpopstate event.
 			</p>
 			<pre x-highlight class="javascript"><code>	
-			var App = new lure( $("[x-view]") );
+			var App = new Lure( $("[x-view]") );
 			App.init();
 			</code></pre>
 			
@@ -49,15 +49,16 @@
 				property.
 			</p>
 			<pre x-highlight class="javascript"><code>
-			App.controller("name", function(scope, el, value) {
+			App.controller("name", 
+				function(model, el, value, controllers) {
 
-			    $(el).on("click", function() {
+				    $(el).on("click", function() {
 
-			        window.location.href = value;
+				        window.location.href = value;
 
-			    });	
+				    });	
 
-			});
+				});
 			</code></pre>			
 
 			<h2>.http</h2>
@@ -75,7 +76,7 @@
 			         'gists?callback=?',
 			    dataType: 'json',
 			    success: function(data) {
-			        scope.myinfo.github = data;
+			        model.myinfo.github = data;
 			    }
 				
 			});
