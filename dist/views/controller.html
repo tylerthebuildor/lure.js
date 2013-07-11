@@ -13,157 +13,85 @@
 
 		<article>
 
-			<h2>lure.js</h2>
-			<pre x-highlight class="javascript"><code>	
-			/* Globals */
-			var controllers = {};
-
-			/* Add Controller */
-			this.controller = function(name, callback) {    
-
-			  controllers[name] = callback;
-			  return this;
-
-			};
-			</code></pre>
-
-			<h2>main.js</h2>
+			<h2>scripts/main.js</h2>
 			<pre x-highlight class="javascript"><code>
-			/* Init */
-			var App = new lure( $("[x-view]") );
-			App.init();
+			.controller("AboutCtrl", 
+				function(model) {
 
-			/* Controllers */
-			App.controller("ModelCtrl", function(scope) {
+				  console.log(model);
 
-			  console.log(scope);
-
-			});
+				});
 			</code></pre>
 
 			<p>
-				This first example shows the birth of
-				a controller: from the declaration of the 
-				controllers global object, to the add controller function, and
-				finally an example of a controller that console.log&#8217;s
-				the global scope it has access to.
+				The Controllers dictate change in the model. This was the hardest
+				concept for me to grasp. What we're saying is anytime something is supposed to change we will use a Controller to handle that.
 			</p>
 
 			<p>
-				In Lure.js controllers are called in two ways. In the first
-				scenario a controller is called when popstate is fired. Every
-				url route has a specific controller assigned to it that 
-				sets up the scope for the first time. Think of it as
-				the init function for your individual "pages".
+				Controllers are really just functions stored in an object. They have the added benefit of access to the global model variable and auto-updating the View after they run.
 			</p>
 
-			<h2>main.js</h2>
+			<h2>scripts/main.js</h2>
 			<pre x-highlight class="javascript"><code>
-			/* Init */
-			var App = new lure( $("[x-view]") );
-			App.init();
+			.route("/about", {
 
-			/* Routes */
-			App.route("/home", {
+				  templateUrl: "views/about.html",
+				  controller: "AboutCtrl"
 
-			  templateUrl: "views/home.html",
-			  controller: "HomeCtrl"
-
-			});
-
-			/* Controllers */
-			App.controller("HomeCtrl", function(scope) { 
-
-			  console.log(scope);
-
-			});
-			</code></pre>
-
-			<h2>lure.js</h2>
-			<pre x-highlight class="javascript"><code>
-			/* Init Route */
-			var initRoute = function() {
-
-			  thisRoute = window.location.pathname;
-			  var route = routes[thisRoute];
-
-			  if(route) {            
-			    scope = {};
-			    controllers[route.controller](scope);
-			    updateView(route.templateUrl);
-			  }
-
-			};  
-
-			/* Init */
-			this.init = function() {
-
-			  window.onpopstate = function (event) {
-			    initRoute();
-			  };
-
-			};
+				});
 			</code></pre>
 
 			<p>
-				The second group of controllers are extensions for your html.
-				They can add events, change values, assign classes, and even
-				call other controllers. You add these to your html elements as attributes
-				using the x-ControllerName="value" syntax.
+				Logically there are two common instances in which you would want to change data on your page. The first being when the URL changes. This often reflects a serious shift in the current UI and probably requires new data. 
+			</p>
+			<p>
+				Lure.js handles this with "routes". You can assign a Controller that will run whenever the URL matches a specific string. The data the assigned Controller receives will be merged with the listed template of choice.
 			</p>
 
-			<h2>home.html</h2>
+			<h2>views/controller.html</h2>
 			<pre x-highlight class="html"><code>
-			&#60;article x-link="/model"&#62;&#60;/article&#62;
-			&#60;article x-link="/view"&#62;&#60;/article&#62;
-			&#60;article x-link="/controller"&#62;&#60;/article&#62;
+			&#60;pre x-highlight class="javascript"&#62;&#60;code&#62;
+			.controller("AboutCtrl", 
+				function(model) {
 
-			</code></pre>
+				  console.log(model);
 
-			<h2>main.js</h2>
-			<pre x-highlight class="javascript"><code>
-			/* DOM Controllers */
-			App.controller("link", function(scope, el, value) {
-
-			  $(el).on("click", function() {
-			    window.location.href = value;
-			  });	
-
-			});
-			</code></pre>
-
-			<h2>lure.js</h2>
-			<pre x-highlight class="javascript"><code>
-			/* Run Controllers */
-			var runControllers = function() {
-
-			  $.each(controllers, function(name, controller) {
-
-			    $("[x-"+name+"]").each(function(index, el) {
-
-			      var value = $(el).attr("x-"+name);
-
-			      controller(scope, el, value, controllers);
-
-			    });                
-
-			  });
-
-			};
+				});
+			&#60;/code&#62;&#60;/pre&#62;
 			</code></pre>
 
 			<p>
-				runControllers is called immediately after the view
-				is inserted into the viewContainer.
+				The second instance of model change is UI interaction. Lure.js handles this with DOM Controllers for your HTML. They can add events, change values, assign classes, and even call other controllers. 
+			</p>
+			<p>
+				You add these to your HTML elements as attributes
+				using the x-ControllerName="value" syntax. When you add one of these attributes to an element the "ControllerName" Controller will run when that element is parsed.
 			</p>
 
-			<h2>lure.js</h2>
+			<h2>scripts/main.js</h2>
 			<pre x-highlight class="javascript"><code>
-			// update view-container
-			$(viewContainer).html(view);
+			.controller("highlight", 
+				function(model, el, value, controllers) {
 
-			// run controllers
-			runControllers();
+					hljs.highlightBlock(el, "&amp;nbsp;");
+
+				})
+			</code></pre>
+
+			<p>
+				The named Controller will be passed pointers to the model object, the element that called it, the optional "value" field, and the list of all the Controllers.
+			</p>
+
+			<p>
+				You can do whatever you decide with this info to hopefully change your Model and then watch as your View is automatically updated.
+			</p>
+
+			<pre x-highlight class="html"><code> 
+			  __  _  _  ___  ___  ___   ___  _ 
+			 / _)( )( )(  _)(  _)(  ,) / __)/ \
+			( (_  )__(  ) _) ) _) )  \ \__ \\_/
+			 \__)(_)(_)(___)(___)(_)\_)(___/(_)
 			</code></pre>
 
 			<p>
@@ -171,10 +99,11 @@
 				and it's up for grabs on 
 				<a href="https://github.com/tylerbuchea/lure.js" target="_blank">Github</a>. 
 				If you want a better
-				undertanding of MVC I strongly suggest cloning my repo and 
+				understanding of MVC I strongly suggest cloning my repo and 
 				tweaking the code to really see how it functions. Then come
 				back and read this again.
 			</p>
+
 			
 		</article>
 
