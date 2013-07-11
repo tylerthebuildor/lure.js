@@ -189,17 +189,17 @@ h1.hero {
 			border-top: 0; 
 		}
 
+
 		&[x-link] { 
 			& {
 				cursor: pointer;
 			}
 			&:active { color: $dark; } 
 			&:hover { color: $lighter; }
-			&:nth-of-type(1) { h2:first-letter { color: $vibrant; } }
-			&:nth-of-type(2) { h2:first-letter { color: $dark; } }
-			&:nth-of-type(3) { h2:first-letter { color: $base; } }
+			&:nth-of-type(2) { h2:first-letter { color: $vibrant; } }
+			&:nth-of-type(3) { h2:first-letter { color: $dark; } }
+			&:nth-of-type(4) { h2:first-letter { color: $base; } }
 		}
-
 
 		h2 {
 
