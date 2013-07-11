@@ -13,11 +13,8 @@
 
 		<article>
 
-			<h2>lure.js</h2>
+			<h2>components/lure/lure.js</h2>
 			<pre x-highlight class="javascript"><code>	
-			// store model
-			var model = scope;
-
 			// prepare template
 			var template = Handlebars.compile(html);
 
@@ -26,10 +23,8 @@
 			</code></pre>
 
 			<p>
-				The view is created when the
-				model-data (in our case the 
-				scope object) is
-				merged with a template.
+				The View is created when the
+				model-data is merged with a template.
 			</p>
 
 			<p>
@@ -53,7 +48,7 @@
 				users like to interact with things. Updating graphs, adding content,
 				socializing, etc. This is where Controllers come in. They change the model
 				in clever ways and then re-inject that data into the template to create the
-				new view. 
+				new view.
 			</p>
 
 			<p>

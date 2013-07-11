@@ -14,13 +14,10 @@
 				binds the initial routes to the onpopstate event.
 			</p>
 			<pre x-highlight class="javascript"><code>	
-			var App = new lure( $("[x-view]") );
+			var App = new Lure( $("[x-view]") );
 			App.init();
 			</code></pre>
-			
-			<p>
-				
-			</p>
+
 		</article>
 
 		<article>
@@ -43,21 +40,22 @@
 			<h2>.controller</h2>
 			<p>
 				Breaks the code into functional pieces
-				and can be called from the dom with the 
+				and can be called from the DOM with the 
 				x-ControllerName="value" attribute or 
 				from within a route using the controller
 				property.
 			</p>
 			<pre x-highlight class="javascript"><code>
-			App.controller("name", function(scope, el, value) {
+			App.controller("name", 
+				function(model, el, value, controllers) {
 
-			    $(el).on("click", function() {
+				    $(el).on("click", function() {
 
-			        window.location.href = value;
+				        window.location.href = value;
 
-			    });	
+				    });	
 
-			});
+				});
 			</code></pre>			
 
 			<h2>.http</h2>
@@ -75,7 +73,7 @@
 			         'gists?callback=?',
 			    dataType: 'json',
 			    success: function(data) {
-			        scope.myinfo.github = data;
+			        model.myinfo.github = data;
 			    }
 				
 			});

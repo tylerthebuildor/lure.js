@@ -13,8 +13,8 @@ function Lure(viewContainer) {
 
     /* Globals */
     var controllers = {}; 
+    var model = {};
     var routes = {};
-    var scope = {};
     var thisRoute;
 
     /* Init Route */
@@ -24,8 +24,8 @@ function Lure(viewContainer) {
         var route = routes[thisRoute];
 
         if(route) {
-            scope = {};
-            controllers[route.controller](scope);
+            model = {};
+            controllers[route.controller](model);
             updateView(route.templateUrl);
         }
 
@@ -40,7 +40,7 @@ function Lure(viewContainer) {
 
                 var value = $(el).attr("x-"+name);
 
-                controller(scope, el, value, controllers);
+                controller(model, el, value, controllers);
 
             });                
 
@@ -53,9 +53,6 @@ function Lure(viewContainer) {
 
         // get template
         $.get(templateUrl, function(html) {
-
-            // store model
-            var model = scope; 
 
             // prepare template
             var template = Handlebars.compile(html);
