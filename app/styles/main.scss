@@ -57,8 +57,14 @@ a {
 
 }
 
-hr { 
-	border-top: 3px dashed $lighter; 
+section hr { 
+	border-top: 3px dashed $lighter;
+}
+
+article hr { 
+	border-top: 3px dashed $lighter;
+	width: 50%;
+	margin-left: 0;
 }
 
 li {
